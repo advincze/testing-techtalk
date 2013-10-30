@@ -76,15 +76,8 @@
       </article>
 
       <article class="fill">
-        <h3>Do not be ashamed or feel guilty. Me too.</h3>
+        <h3>Do not be ashamed - we're all guilty.</h3>
         <p><img style="max-width: 100%; max-height: 100%" src="pics/cat_caught.png" alt="cat_caught"></p>
-      </article>
-
-      <article class="nobackground">
-        <h3>TODO: Sonar code coverage status!!!!!</h3>
-        <p style="text-align: center">
-          Screenshot
-        </p>
       </article>
 
 <article class="nobackground">
@@ -142,7 +135,7 @@
         </h1>
         <div class="build">
           <br>
-        <small>Customers and managers do not care about it</small>
+        <small>Customers and managers do not care about unit testing</small>
         <br>
         <p>
           <small>... but do care about quality (extensibility, maintainability, keeping deadlines...)</small>
@@ -152,7 +145,6 @@
         </p>
       </div>
       </article>
-
 
       <article class="fill">
         <h3>Part 2: Unit Testing in Detail</h3>
@@ -170,6 +162,15 @@
             <dt><strong>T</strong>imely</dt><dd>Written immediately before the code - writing the test first makes a difference.</dd>
         </dl>
       </article>
+
+      <article class="nobackground">
+         <h3>TDD Cycle</h3>
+         <p>Should be well-known:</p>
+         <p style="text-align: center">
+           <img style="width: 500px" src="pics/tdd-cycle.png" alt="tdd-cycle">
+         </p>
+         <br>
+        </article>
 
       <article class="nobackground">
         <h1>
@@ -222,8 +223,8 @@ public void <span class="highlight-good">beAwareOfLeapYears</span>() {
       <article class="nobackground">
         <h3>Structure your test implementation</h3>
         <br>
+        <p>Common anti-pattern these days:</p>
         <div class="build">
-          <p>Common anti-pattern these days:</p>
           <br>
             <pre class="java prettyprint">
 @Test
@@ -243,7 +244,7 @@ public void testMethod() {
       <article class="nobackground">
         <h3>Structure your test implementation</h3>
         <br>
-        Per test always:
+        Per test always (BDD style):
         <br>
         <ul class="build">
           <li>setup system for test</li>
@@ -286,18 +287,16 @@ public void testMethod() {
         </div>
         <br>
         <div class="build">
-          <span>Not always possible, unreachable goal, BUT:</span>
+          <span>Not always easy, BUT:</span>
           <ul class="build">
-            <li>DRY, implement own assert methods</li>
-            <li>use matcher libraries to increase expressiveness</li>
+            <li>implement own assert methods</li>
+            <li>use matcher libraries (hamcrest, fest-assert) to increase expressiveness</li>
           </ul>
         </div>
       </article>
 
       <article class="nobackground">
         <h3>One assert per test</h3>
-        <br>
-        <p>To use as less logical asserts per test as possible is a reachable goal.</p>
         <br>
         <div class="build">
             <p>So, what could be improved in this simplified test method?</p>
@@ -335,19 +334,15 @@ private void assertPersonEquals(Person expected, Person actual) {
       </article>
 
       <article class="nobackground">
-        <h3>Watch the test fail</h3>
+        <h3>...do you know what went wrong?</h3>
         <br>
         <div class="build">
-          <p>The quality of a test is how good it points you to the failure in your system if it fails.</p>
-        </div>
-        <br>
-        <div class="build">
-          <p>So, improve the TDD cycle:</p>
+          <p>if not, improve the TDD cycle:</p>
         </div>
         <ol class="build">
           <li>Write a test</li>
           <li>Watch it fail</li>
-          <li><big>Improve the failure message until you know exactly why it is failing</big></li>
+          <li><big>Improve the failure message until you know <b>exactly</b> why it is failing</big></li>
           <li>Write code to make the test pass</li>
           <li>Refactor and go to first point</li>
         </ol>
@@ -359,25 +354,13 @@ private void assertPersonEquals(Person expected, Person actual) {
       </article>
 
       <article class="nobackground">
-        <h3>Listen to the tests</h3>
+        <h3>If something is difficult to test...</h3>
         <br>
         <div class="build">
-          <p>If something is difficult to test, ask yourself:</p>
-          <ul class="build">
-            <li>not only how to test it</li>
-            <li>also <big><b>why</b></big> is it hard to test</li>
-          </ul>
+          <p>ask yourself: <big><b>why</b></big> is it hard to test</p>
+          <p>Often a sign for: !Clean Code</p>
         </div>
-        <br>
-        <div class="build">
-          <p>Often a sign for:</p>
-          <ul class="build">
-            <li>design issues</li>
-            <li>tight coupling</li>
-            <li>low cohesion</li>
-            <li>so, problems that hit you in maintenance and further development</li>
-          </ul>
-        </div>
+       
       </article>
 
       <article class="nobackground">
@@ -389,46 +372,26 @@ private void assertPersonEquals(Person expected, Person actual) {
       <article class="nobackground">
         <h3>Write the tests you want to read</h3>
         <ul class="build">
-          <li>test code is as important as production code (maybe more?)</li>
-          <li>review your test code continuously</li>
-          <li>refactor your test code continuously</li>
-          <li>recognize test code as the documentation you always missed</li>
+          <li><b>review</b> and <b>refactor</b> your test code continuously</li>
+          <li>recognize test code as the <b>documentation</b> you always missed</li>
           <li>why not implement own dsl only for tests?</li>
+          <li><b>encapsulate</b> parts of the system to make it testable</li>
         </ul>
       </article>
 
       
       <article class="fill">
-        <h3>Part 4: Testing in Legacy Code</h3>
+        <h3>Part 3: Testing in Legacy Code</h3>
         <p><img style="max-width: 100%; max-height: 100%" src="pics/iceland-volcano-eruption.jpg" alt="iceland-volcano-eruption"></p>
       </article>
 
       <article class="nobackground">
-        <h2>
-          <q>The main thing that distinguishes legacy code from non-legacy code is tests, or rather a lack of tests.</q>
-          <div class="author">
-            Michael Feathers
-          </div>
-        </h2>
-      </article>
-
-      <article class="nobackground">
-        <h1>
-          We produce legacy code every single day.
-        </h1>
-      </article>
-
-      <article class="nobackground">
-        <h1>
-          Legacy code is extremely hard to test.
-        </h1>
-      </article>
-
-      <article class="nobackground">
-        <h1>
-          One smell in legacy code:<br>
+        <h1>Example</h1>
+        <br>
+        <h3>
+          one smell in legacy code:<br>
           Dependencies of classes are not explicit.
-        </h1>
+        </h3>
       </article>
 
       <article class="nobackground">
@@ -489,6 +452,7 @@ public class Account {
         <br>
         <p style="text-align: center">
           <img style="height: 500px" src="pics/feathers-book.jpg" alt="feathers-book">
+          <img style="height: 500px" src="pics/clean-code.jpg" alt="clean-code-book">
         </p>
       </article>
 
